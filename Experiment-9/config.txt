@@ -1,0 +1,33 @@
+=== Experiment 9: Transport Layer (UDP, TCP, SCTP) — Configuration ===
+
+--- PC IP ASSIGNMENTS ---
+PC0 (UDP client): IP 192.168.1.2 | Mask 255.255.255.0 | GW 192.168.1.1
+PC1 (TCP client): IP 192.168.1.3 | Mask 255.255.255.0 | GW 192.168.1.1
+PC2 (SCTP doc):   IP 192.168.1.4 | Mask 255.255.255.0 | GW 192.168.1.1
+PC3 (UDP server): IP 192.168.2.2 | Mask 255.255.255.0 | GW 192.168.2.1
+PC4 (TCP server): IP 192.168.2.3 | Mask 255.255.255.0 | GW 192.168.2.1
+PC5 (SCTP doc):   IP 192.168.2.4 | Mask 255.255.255.0 | GW 192.168.2.1
+
+--- ROUTER INTERFACES ---
+Fa0/0: 192.168.1.1 / 255.255.255.0
+Fa0/1: 192.168.2.1 / 255.255.255.0
+
+--- UDP SIMULATION ---
+Tool: Add Simple PDU (PC0 → PC3) — no connection setup observed
+Test: ping 192.168.2.2 from PC0
+
+--- TCP SIMULATION ---
+PC4 Server: Services → HTTP → Enabled
+PC1 Browser: http://192.168.2.3
+Simulation Mode: filter TCP + HTTP
+Observe: SYN → SYN-ACK → ACK → GET → 200 OK
+
+TCP Handshake Ports:
+  Client Port: ephemeral (~1025+)
+  Server Port: 80 (HTTP)
+  Flags: SYN | SYN-ACK | ACK
+
+--- SCTP PARAMETERS (documented) ---
+Handshake: INIT → INIT-ACK → COOKIE-ECHO → COOKIE-ACK
+Streams: Multiple independent (e.g., Stream 0: control, Stream 1: data)
+Multi-homing: PC-A IP1 and IP2 → SCTP selects active path

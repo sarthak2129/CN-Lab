@@ -1,0 +1,31 @@
+=== Experiment 10: DNS and DDNS Simulation — Configuration ===
+
+--- DEVICE IPs ---
+Server: IP 192.168.1.1 | Mask 255.255.255.0
+PC0:    IP 192.168.1.2 | Mask 255.255.255.0 | GW 192.168.1.1 | DNS 192.168.1.1
+PC1:    IP 192.168.1.3 | Mask 255.255.255.0 | GW 192.168.1.1 | DNS 192.168.1.1
+PC2:    DHCP auto-assigned                   | DNS 192.168.1.1
+
+--- DNS RECORDS (Server → Services → DNS) ---
+DNS Service: ON
+example.com    → 192.168.1.2  (Type: A)
+test.com       → 192.168.1.3  (Type: A)
+server.local   → 192.168.1.1  (Type: A)
+
+--- DDNS UPDATES ---
+Step 1 (New record):   newsite.com  → 192.168.1.4
+Step 2 (Update):       example.com  → 192.168.1.5 (changed from 192.168.1.2)
+
+--- HTTP SERVICE (Server → Services → HTTP) ---
+Status: ON
+index.html: <html><body><h1>Welcome to CN Lab DNS Server</h1></body></html>
+
+--- DNS QUERY COMMANDS (PC Command Prompt) ---
+nslookup example.com
+nslookup test.com
+nslookup newsite.com
+ping example.com
+
+--- WEB BROWSER TESTS ---
+PC0 Browser → http://example.com
+PC1 Browser → http://newsite.com

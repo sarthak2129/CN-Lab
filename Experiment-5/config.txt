@@ -1,0 +1,24 @@
+=== Experiment 5: Flow Control & Error Control Protocols — Configuration ===
+
+--- PC ADDRESSES ---
+PC0 (Sender):   IP 192.168.1.1 | Mask 255.255.255.0
+PC1 (Receiver): IP 192.168.1.2 | Mask 255.255.255.0
+
+--- PROTOCOL PARAMETERS ---
+Stop-and-Wait:   Window Size = 1, one PDU at a time
+Go-Back-N ARQ:   Window Size = 7 (example), retransmit from error frame
+Selective Repeat: Window Size = 7 (example), retransmit only erroneous frame
+
+--- EFFICIENCY FORMULAS ---
+a = propagation delay / transmission time
+Stop-and-Wait:   η = 1 / (1 + 2a)
+Go-Back-N:       η = N / (1 + 2a)   [if N < 1+2a]
+Selective Repeat: η = N / (1 + 2a)   [if N < 1+2a]
+
+--- SIMULATION STEPS ---
+1. Add Simple PDU (PC0 → PC1) — one at a time for Stop-and-Wait
+2. Add multiple PDUs rapidly — observe window behavior for GBN / SR
+3. Simulation Mode → Capture/Forward → observe Event List
+
+--- CONNECTIVITY TEST ---
+ping 192.168.1.2

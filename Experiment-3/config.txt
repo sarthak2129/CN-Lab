@@ -1,0 +1,20 @@
+=== Experiment 3: Packet Delay, Loss, Throughput — Configuration ===
+
+--- PC ADDRESSES ---
+PC0: IP 192.168.1.2 | Mask 255.255.255.0 | Gateway 192.168.1.1
+PC1: IP 192.168.1.3 | Mask 255.255.255.0 | Gateway 192.168.1.1
+PC2: IP 192.168.2.2 | Mask 255.255.255.0 | Gateway 192.168.2.1
+PC3: IP 192.168.2.3 | Mask 255.255.255.0 | Gateway 192.168.2.1
+
+--- ROUTER INTERFACES ---
+Fa0/0: 192.168.1.1 / 255.255.255.0   (Status: UP/UP)
+Fa0/1: 192.168.2.1 / 255.255.255.0   (Status: UP/UP)
+
+--- ROUTING PROTOCOL ---
+Mode 1 — Static:  ip route 192.168.2.0 255.255.255.0 [next-hop]
+Mode 2 — RIP v2:  router rip → version 2 → network 192.168.1.0 → network 192.168.2.0
+
+--- TRAFFIC TEST ---
+PC0 → PC2: ping 192.168.2.2
+PC1 → PC3: ping 192.168.2.3
+Simulation Mode: observe Event List timestamps for delay measurement

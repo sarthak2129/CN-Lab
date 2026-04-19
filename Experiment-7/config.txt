@@ -1,0 +1,25 @@
+=== Experiment 7: Sliding Window Protocol with Piggybacking — Configuration ===
+
+--- PC ADDRESSES ---
+PC0 (Sender/Receiver): IP 192.168.1.1 | Mask 255.255.255.0
+PC1 (Receiver/Sender): IP 192.168.1.2 | Mask 255.255.255.0
+
+--- SLIDING WINDOW PARAMETERS ---
+Window Size (W)  = 4
+Sequence Numbers = 0 to W-1 (mod W)
+Frame Size       = variable (ICMP default)
+ACK Mode         = Cumulative
+
+--- PIGGYBACKING SCHEME ---
+PC0 → PC1: Frame(seq=0), Frame(seq=1), Frame(seq=2), Frame(seq=3)
+PC1 → PC0: Data frame includes ACK(seq=4) piggybacked
+PC0 → PC1: Frame(seq=4), Frame(seq=5) ... window slides
+
+--- SIMULATION ---
+Mode: Simulation
+Filter: ICMP
+Steps: Add 4 consecutive PDUs → Capture/Forward → observe window
+Event List: click each packet → PDU Info → note sequence/ack fields
+
+--- CONNECTIVITY TEST ---
+ping 192.168.1.2

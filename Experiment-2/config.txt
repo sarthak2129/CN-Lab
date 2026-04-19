@@ -1,0 +1,18 @@
+=== Experiment 2: Packet Switching & Circuit Switching — Configuration ===
+
+--- PACKET SWITCHING NETWORK ---
+PC0: IP 192.168.1.2 | Mask 255.255.255.0 | Gateway 192.168.1.1
+PC1: IP 192.168.1.3 | Mask 255.255.255.0 | Gateway 192.168.1.1
+PC2: IP 192.168.2.2 | Mask 255.255.255.0 | Gateway 192.168.2.1
+PC3: IP 192.168.2.3 | Mask 255.255.255.0 | Gateway 192.168.2.1
+
+Router Fa0/0: 192.168.1.1 / 255.255.255.0  (LAN 1)
+Router Fa0/1: 192.168.2.1 / 255.255.255.0  (LAN 2)
+
+--- CIRCUIT SWITCHING SIMULATION ---
+PC4: IP 192.168.3.2 | Mask 255.255.255.0 | Gateway 192.168.3.1
+PC5: IP 192.168.3.3 | Mask 255.255.255.0 | Gateway 192.168.3.1
+Router Fa1/0: 192.168.3.1 / 255.255.255.0  (LAN 3)
+
+Persistent ping command (simulates dedicated circuit):
+  ping 192.168.3.3 -t

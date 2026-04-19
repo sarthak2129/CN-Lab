@@ -1,0 +1,29 @@
+=== Experiment 1: Network Topologies — IP Configuration ===
+
+--- BUS TOPOLOGY ---
+PC0: IP 192.168.1.1 | Mask 255.255.255.0 | Gateway N/A
+PC1: IP 192.168.1.2 | Mask 255.255.255.0 | Gateway N/A
+PC2: IP 192.168.1.3 | Mask 255.255.255.0 | Gateway N/A
+PC3: IP 192.168.1.4 | Mask 255.255.255.0 | Gateway N/A
+Device: Hub (no configuration required)
+
+--- STAR TOPOLOGY ---
+PC0: IP 192.168.2.1 | Mask 255.255.255.0 | Gateway N/A
+PC1: IP 192.168.2.2 | Mask 255.255.255.0 | Gateway N/A
+PC2: IP 192.168.2.3 | Mask 255.255.255.0 | Gateway N/A
+PC3: IP 192.168.2.4 | Mask 255.255.255.0 | Gateway N/A
+Device: Switch 2960 (auto-configured via MAC learning)
+
+--- RING TOPOLOGY ---
+PC0: IP 192.168.3.1 | Mask 255.255.255.0 | Gateway N/A
+PC1: IP 192.168.3.2 | Mask 255.255.255.0 | Gateway N/A
+PC2: IP 192.168.3.3 | Mask 255.255.255.0 | Gateway N/A
+PC3: IP 192.168.3.4 | Mask 255.255.255.0 | Gateway N/A
+Connections: PC0↔PC1, PC1↔PC2, PC2↔PC3, PC3↔PC0 (Crossover cables)
+
+--- MESH TOPOLOGY ---
+PC0: IP 192.168.4.1 | Mask 255.255.255.0 | Gateway N/A
+PC1: IP 192.168.4.2 | Mask 255.255.255.0 | Gateway N/A
+PC2: IP 192.168.4.3 | Mask 255.255.255.0 | Gateway N/A
+PC3: IP 192.168.4.4 | Mask 255.255.255.0 | Gateway N/A
+Connections: Full mesh — every PC connected to every other PC (6 crossover cables)
